@@ -26,13 +26,20 @@ class HomeNavigationStackView: UIStackView {
         ].forEach { view in
             addArrangedSubview(view)
         }
-        
+        setupConstraints()
+
         distribution = .equalCentering
         isLayoutMarginsRelativeArrangement = true
         layoutMargins = .init(top: 0, left: 16, bottom: 0, right: 16)
         
+        tinderIcon.contentMode = .scaleAspectFit
+        
         settingsButton.setImage(.topLeftProfile.withRenderingMode(.alwaysOriginal), for: .normal)
         messageButton.setImage(.topMessagesIcon.withRenderingMode(.alwaysOriginal), for: .normal)
+    }
+    
+    private func setupConstraints() {
+        heightAnchor.constraint(equalToConstant: 80).isActive = true
     }
     
     required init(coder: NSCoder) {

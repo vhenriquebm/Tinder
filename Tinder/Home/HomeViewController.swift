@@ -7,7 +7,8 @@
 
 import UIKit
 
-class HomeViewController: UIViewController {
+class HomeViewController: MainViewController {
+    private var mainStackView = UIStackView()
     private let topNavigationStack = HomeNavigationStackView()
     private let bottomStack = BottomControlsStackView()
     
@@ -20,22 +21,33 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setupView()
     }
     
-    private func setupView() {
+    override func setupView() {
         view.backgroundColor = .white
-        view.addSubview(topNavigationStack)
-        
+        setupMainStackView()
+        addSubViews()
         setupConstraints()
     }
     
-    private func setupConstraints() {
+    override func addSubViews() {
+        view.addSubview(mainStackView)
+    }
+    
+    override func setupConstraints() {
         
-        topNavigationStack.anchor(top: view.safeAreaLayoutGuide.topAnchor,
-                                  left: view.leftAnchor,
-                                  right: view.rightAnchor)
+        mainStackView.anchor(top: view.safeAreaLayoutGuide.topAnchor,
+                             left: view.leftAnchor,
+                             bottom: view.safeAreaLayoutGuide.bottomAnchor,
+                             right: view.rightAnchor)
+    }
+    
+    private func setupMainStackView() {
+        mainStackView = UIStackView(arrangedSubviews: [topNavigationStack, deckView, bottomStack])
+        mainStackView.axis = .vertical
+        mainStackView.isLayoutMarginsRelativeArrangement = true
+        mainStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
+        mainStackView.bringSubviewToFront(deckView)
     }
 }
 

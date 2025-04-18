@@ -17,6 +17,7 @@ class BottomControlsStackView: UIStackView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
+        setupConstraints()
     }
     
     private func setupView() {
@@ -29,7 +30,13 @@ class BottomControlsStackView: UIStackView {
             addArrangedSubview(view)
         }
         
+        distribution = .fillEqually
+        
         setupImages()
+    }
+    
+    private func setupConstraints() {
+        heightAnchor.constraint(equalToConstant: 100).isActive = true
     }
     
     private func setupImages() {
