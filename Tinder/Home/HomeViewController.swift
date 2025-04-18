@@ -9,6 +9,14 @@ import UIKit
 
 class HomeViewController: UIViewController {
     private let topNavigationStack = HomeNavigationStackView()
+    private let bottomStack = BottomControlsStackView()
+    
+    private let deckView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemPink
+        view.layer.cornerRadius = 5
+        return view
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
