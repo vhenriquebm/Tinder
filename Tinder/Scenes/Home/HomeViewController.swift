@@ -28,6 +28,7 @@ class HomeViewController: MainViewController {
         setupMainStackView()
         addSubViews()
         setupConstraints()
+        setupCards()
     }
     
     override func addSubViews() {
@@ -48,6 +49,17 @@ class HomeViewController: MainViewController {
         mainStackView.isLayoutMarginsRelativeArrangement = true
         mainStackView.layoutMargins = .init(top: 0, left: 12, bottom: 0, right: 12)
         mainStackView.bringSubviewToFront(deckView)
+    }
+    
+    private func setupCards() {
+        let firstCardView = CardView()
+        let secondCardView = CardView()
+        
+        deckView.addSubview(firstCardView)
+        deckView.addSubview(secondCardView)
+        
+        firstCardView.fillSuperview()
+        secondCardView.fillSuperview()
     }
 }
 
