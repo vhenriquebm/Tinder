@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeViewController: MainViewController {
+class HomeViewController: MainViewController, HomeViewProtocol {
     private var presenter: HomePresenter?
     private var mainStackView = UIStackView()
     private let topNavigationStack = HomeNavigationStackView()
@@ -30,7 +30,7 @@ class HomeViewController: MainViewController {
         addSubViews()
         setupConstraints()
         setupPresenter()
-        setupCards()
+        getCards()
     }
     
     override func addSubViews() {
@@ -53,17 +53,16 @@ class HomeViewController: MainViewController {
         mainStackView.bringSubviewToFront(deckView)
     }
     
-    private func setupCards() {
+    private func getCards() {
+        presenter?.getCards()
+    }
+    
+    func show(cards: [CardView]) {
         
-        if let presenter = presenter {
-            
-            let cards =  presenter.getCards()
-            
-            cards.forEach { card in
-                DispatchQueue.main.async {
-                    self.deckView.addSubview(card)
-                    card.fillSuperview()
-                }
+        cards.forEach { card in
+            DispatchQueue.main.async {
+                self.deckView.addSubview(card)
+                card.fillSuperview()
             }
         }
     }

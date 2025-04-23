@@ -8,5 +8,5 @@
 import Foundation
 
 protocol HomePresenterProtocol {
-    func getCards() -> [CardView]
+    func getCards()
 }

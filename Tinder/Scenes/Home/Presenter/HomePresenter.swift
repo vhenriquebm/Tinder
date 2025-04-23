@@ -8,13 +8,13 @@
 import Foundation
 
 class HomePresenter: HomePresenterProtocol {
-    private var controller: HomeViewController
+    private var controller: HomeViewProtocol
     
-    init(controller: HomeViewController) {
+    init(controller: HomeViewProtocol) {
         self.controller = controller
     }
     
-    func getCards() -> [CardView] {
+    func getCards() {
         var cardsList:[CardView] = []
         
         let firstUser = User(name: "Jane Doe", age: 22, images: [.jane1, .jane2])
@@ -26,6 +26,6 @@ class HomePresenter: HomePresenterProtocol {
         cardsList.append(firstCardView)
         cardsList.append(secondCardView)
         
-        return cardsList
+        self.controller.show(cards: cardsList)
     }
 }

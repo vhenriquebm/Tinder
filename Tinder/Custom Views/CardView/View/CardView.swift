@@ -59,15 +59,18 @@ class CardView: UIView {
         
         imageView.fillSuperview()
         
-        infoLabel.attributedText = createAttributedText()
-        
         setupGradiendLayer()
         
         setupImages()
+        setupLabels()
     }
     
     private func setupImages() {
         imageView.image = data.user.images.first
+    }
+    
+    private func setupLabels() {
+        infoLabel.attributedText = data.infoText
     }
     
     private func setupConstraints() {
@@ -88,15 +91,6 @@ class CardView: UIView {
         addSubview(imageView)
         addSubview(infoLabel)
         addSubview(infoButton)
-    }
-    
-    private func createAttributedText() -> NSMutableAttributedString {
-        
-        let attributedText = NSMutableAttributedString(string: "Jone Doe", attributes: [.font: UIFont.systemFont(ofSize: 32, weight: .heavy), .foregroundColor: UIColor.white])
-        
-        attributedText.append(NSAttributedString(string: "  20", attributes:  [.font: UIFont.systemFont(ofSize: 24), .foregroundColor: UIColor.white]))
-        
-        return attributedText
     }
     
     private func setupGradiendLayer() {
