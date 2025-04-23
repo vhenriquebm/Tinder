@@ -13,6 +13,7 @@ enum SwipeDirection: Int {
 }
 
 class CardView: UIView {
+    private let data: CardViewData
     private let gradientLayer = CAGradientLayer()
     
     private let imageView: UIImageView = {
@@ -34,8 +35,10 @@ class CardView: UIView {
         return button
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(data: CardViewData) {
+        self.data = data
+        super.init(frame: .zero)
+        
         setupView()
         addSubViews()
         setupConstraints()
@@ -59,6 +62,12 @@ class CardView: UIView {
         infoLabel.attributedText = createAttributedText()
         
         setupGradiendLayer()
+        
+        setupImages()
+    }
+    
+    private func setupImages() {
+        imageView.image = data.user.images.first
     }
     
     private func setupConstraints() {
